@@ -1,0 +1,35 @@
+{
+  "name": "pooops-backend",
+  "version": "1.0.0",
+  "description": "backend of pooops fedexday project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matyaspeterfi/pooops-backend.git"
+  },
+  "keywords": [
+    "server",
+    "nodejs",
+    "pooops",
+    "backend"
+  ],
+  "author": "@matyaspeterfi, @gbr88, @rrtoth, @galicz555, @dyanimay",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/matyaspeterfi/pooops-backend/issues"
+  },
+  "homepage": "https://github.com/matyaspeterfi/pooops-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.0",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^2.0.2"
+  }
+}
