@@ -11,6 +11,8 @@ const LoginController = require('../controllers/loginController');
 const LoginService = require('../services/loginService');
 const ShitController = require('../controllers/shitController');
 const ShitService = require('../services/shitService');
+const UserController = require('../controllers/userController');
+const UserService = require('../services/userService');
 
 let accTokSec = process.env.ACCESS_TOKEN_SECRET;
 let refTokSec = process.env.REFRESH_TOKEN_SECRET;
@@ -23,6 +25,8 @@ const loginService = new LoginService(conn, registrationService, auth.generateAc
 const loginController = new LoginController(loginService);
 const shitService = new ShitService(conn);
 const shitController = new ShitController(shitService, Authentication.getIdFromToken);
+const userService = new UserService(conn);
+const userController = new UserController(userService, Authentication.getIdFromToken)
 
 router.get('/helloworld', helloWorldController.helloWorldController);
 
@@ -36,6 +40,8 @@ router.get('/shits', auth.authenticateToken, shitController.getShits);
 
 router.post('/shit', auth.authenticateToken, shitController.postShit);
 
-router.put('/shit',  auth.authenticateToken, shitController.putShit)
+router.put('/shit', auth.authenticateToken, shitController.putShit);
+
+router.get('/profile', auth.authenticateToken, userController.getProfile)
 
 module.exports = router;
