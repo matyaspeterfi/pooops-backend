@@ -5,14 +5,14 @@ class LoginController {
   }
 
   login(req, res) {
-    if (req.body.username && req.body.password) {
+    if (req.body.email && req.body.password) {
       this.loginService.authorizeUser({
-        username: req.body.username,
+        email: req.body.email,
         password: req.body.password,
       }).then(data => res.status(200).json(data))
-        .catch(() => res.status(400).json({ message: 'Incorrect Username and/or Password!' }));
+        .catch(() => res.status(400).json({ message: 'Incorrect email and/or Password!' }));
     } else {
-      res.status(400).json({ message: 'Incorrect Username and/or Password!' })
+      res.status(400).json({ message: 'Incorrect email and/or Password!' })
     }
   }
 }

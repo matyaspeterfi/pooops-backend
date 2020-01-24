@@ -3,7 +3,7 @@ class RegistrationService {
     this.conn = conn;
   }
 
-  usernameEmailValidation(input) {
+  emailValidation(input) {
     const user = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     if (input && user.test(input)) return true;
     return false;
@@ -16,10 +16,10 @@ class RegistrationService {
   }
 
   containsUser(item) {
-    return new Promise((resolve) => {
-      const query = 'SELECT * FROM users WHERE username = ?;';
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM users WHERE email = ?;';
 
-      this.conn.query(query, [item.username], (err, row) => {
+      this.conn.query(query, [item.email], (err, row) => {
         err ? reject(new Error(500)) : resolve(row);
       });
     });
@@ -27,9 +27,9 @@ class RegistrationService {
 
   insertUser(item) {
     return new Promise((resolve, reject) => {
-      const query = 'INSERT INTO users (username, password) VALUES (?, ?);';
+      const query = 'INSERT INTO users (email, password) VALUES (?, ?);';
       
-      this.conn.query(query, [item.username, item.password], (err, row) => {
+      this.conn.query(query, [item.email, item.password], (err, row) => {
         err ? reject(new Error(500)) : resolve(row.insertId);
       });
     });
@@ -38,7 +38,7 @@ class RegistrationService {
   async createUser(item) {
     const userData = await this.containsUser(item);
     return new Promise((resolve, reject) => {
-      if (!this.checkIfUserNameNumLatinLetters(item.username) || !this.checkIfPasswordNumLatinLetter(item.password)) {
+      if (!this.emailValidation(item.email) || !this.checkIfPasswordNumLatinLetter(item.password)) {
         reject(new Error(400));
       } else if (item.password !== item.confirmPsw) {
         reject(new Error(400));
