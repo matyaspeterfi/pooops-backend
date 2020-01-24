@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('env-yaml').config();
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 const router = require('./routes/index');
