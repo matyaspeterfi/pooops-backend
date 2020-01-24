@@ -22,7 +22,7 @@ const registrationController = new RegistrationController(registrationService);
 const loginService = new LoginService(conn, registrationService, auth.generateAccess, auth.generateRefresh);
 const loginController = new LoginController(loginService);
 const shitService = new ShitService(conn);
-const shitController = new ShitController(shitService);
+const shitController = new ShitController(shitService, Authentication.getIdFromToken);
 
 router.get('/helloworld', helloWorldController.helloWorldController);
 
@@ -33,5 +33,7 @@ router.post('/login', loginController.login);
 router.post('/getToken', auth.refreshedToken);
 
 router.get('/shits', auth.authenticateToken, shitController.getShits);
+
+router.post('/shit', auth.authenticateToken, shitController.postShit)
 
 module.exports = router;
