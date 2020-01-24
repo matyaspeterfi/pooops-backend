@@ -34,6 +34,8 @@ router.post('/getToken', auth.refreshedToken);
 
 router.get('/shits', auth.authenticateToken, shitController.getShits);
 
-router.post('/shit', auth.authenticateToken, shitController.postShit)
+router.post('/shit', auth.authenticateToken, shitController.postShit);
+
+router.put('/shit',  auth.authenticateToken, shitController.putShit)
 
 module.exports = router;
