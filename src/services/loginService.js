@@ -10,7 +10,7 @@ class LoginService {
     const userInfo = await this.registrationService.containsUser(input);
     return new Promise((resolve, reject) => {
       if (userInfo.length) {
-        if (userInfo[0].username === input.username && userInfo[0].password === input.password) {
+        if (userInfo[0].email === input.email && userInfo[0].password === input.password) {
           resolve({
             accessToken: this.generateAccessToken({ userId: userInfo[0].id }),
             refreshToken: this.generateRefreshToken({ userId: userInfo[0].id }),
