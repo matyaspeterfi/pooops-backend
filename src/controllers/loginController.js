@@ -9,10 +9,10 @@ class LoginController {
       this.loginService.authorizeUser({
         email: req.body.email,
         password: req.body.password,
-      }).then(data => res.status(200).json(data))
-        .catch(() => res.status(400).json({ message: 'Incorrect email and/or Password!' }));
+      }).then(data => res.status(200).json(data)) //access token és refresh token
+        .catch(() => res.status(400).json({ message: 'Incorrect email and/or password!' }));
     } else {
-      res.status(400).json({ message: 'Incorrect email and/or Password!' })
+      res.status(400).json({ message: 'Incorrect email and/or password!' })
     }
   }
 }

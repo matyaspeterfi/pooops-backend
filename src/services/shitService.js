@@ -6,10 +6,19 @@ class ShitService {
 
   getAllShits() { // later: not all, just around specific coordinates
     return new Promise((resolve, reject) => {
-      const query = 'SELECT * FROM shits WHERE thereOrNot = 1;'
+      const query = 'SELECT * FROM shits WHERE thereOrNot = 1;';
 
       this.conn.query(query, [], (err, rows) => {
-        err ? reject(new Error(500)) : resolve(rows)
+        err ? reject(new Error(500)) : resolve(rows);
+      });
+    });
+  }
+
+  getOldestShits() {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM shits WHERE thereOrNot = 1 ORDER BY id ASC LIMIT 10;';
+      this.conn.query(query, [], (err, rows) => {
+        err ? reject(new Error(500)) : resolve(rows);
       });
     });
   }

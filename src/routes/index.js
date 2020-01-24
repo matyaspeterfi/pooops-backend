@@ -46,4 +46,6 @@ router.get('/profile', auth.authenticateToken, userController.getProfile);
 
 router.put('/username', auth.authenticateToken, userController.updateUsername);
 
+router.get('/oldShits', auth.authenticateToken, shitController.getOldestShits);
+
 module.exports = router;
