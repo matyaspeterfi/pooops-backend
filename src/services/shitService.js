@@ -6,7 +6,7 @@ class ShitService {
 
   getAllShits() { // later: not all, just around specific coordinates
     return new Promise((resolve, reject) => {
-      const query = 'SELECT * FROM shits;'
+      const query = 'SELECT * FROM shits WHERE thereOrNot = 1;'
 
       this.conn.query(query, [], (err, rows) => {
         err ? reject(new Error(500)) : resolve(rows)
