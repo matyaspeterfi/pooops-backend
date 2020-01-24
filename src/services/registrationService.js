@@ -3,7 +3,7 @@ class RegistrationService {
     this.conn = conn;
   }
 
-  checkIfUserNameNumLatinLetters(input) {
+  usernameEmailValidation(input) {
     const user = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     if (input && user.test(input)) return true;
     return false;
