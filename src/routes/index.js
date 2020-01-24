@@ -13,6 +13,8 @@ const ShitController = require('../controllers/shitController');
 const ShitService = require('../services/shitService');
 const UserController = require('../controllers/userController');
 const UserService = require('../services/userService');
+const LeaderboardController = require('../controllers/leaderboardController');
+const LeaderboardService = require('../services/leaderbordService');
 
 let accTokSec = process.env.ACCESS_TOKEN_SECRET;
 let refTokSec = process.env.REFRESH_TOKEN_SECRET;
@@ -26,7 +28,9 @@ const loginController = new LoginController(loginService);
 const shitService = new ShitService(conn);
 const shitController = new ShitController(shitService, Authentication.getIdFromToken);
 const userService = new UserService(conn);
-const userController = new UserController(userService, Authentication.getIdFromToken)
+const userController = new UserController(userService, Authentication.getIdFromToken);
+const leaderboardService = new LeaderboardService(conn);
+const leaderboardController = new LeaderboardController(leaderboardService);
 
 router.get('/helloworld', helloWorldController.helloWorldController);
 
@@ -45,5 +49,8 @@ router.put('/shit', auth.authenticateToken, shitController.putShit);
 router.get('/profile', auth.authenticateToken, userController.getProfile);
 
 router.put('/username', auth.authenticateToken, userController.updateUsername);
+
+router.get('/leaderboard', auth.authenticateToken, leaderboardController.getLeaderboardData);
+// posted/removed/oldest
 
 module.exports = router;
