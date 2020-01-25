@@ -40,6 +40,24 @@ class UserService {
       })
     })
   }
+
+  showTopCleaners() {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT users.username, COUNT(shits.removedById) AS Total from shits RIGHT JOIN users ON shits.removedById = users.id GROUP BY users.id, users.username ORDER BY Total Desc LIMIT 10;';
+      this.conn.query(query, [], (err, rows) => {
+        err ? reject(new Error(500)) : resolve(rows);
+      });
+    });
+  }
+
+  showTopPoopers() {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT users.username, COUNT(shits.addedById) AS Total from shits RIGHT JOIN users ON shits.addedById = users.id GROUP BY users.id, users.username ORDER BY Total Desc LIMIT 10;';
+      this.conn.query(query, [], (err, rows) => {
+        err ? reject(new Error(500)) : resolve(rows);
+      });
+    });
+  }
 }
 
 module.exports = UserService;

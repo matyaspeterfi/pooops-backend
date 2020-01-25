@@ -3,6 +3,8 @@ class UserController {
     this.userService = userService;
     this.getProfile = this.getProfile.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
+    this.getTopCleaners = this.getTopCleaners.bind(this);
+    this.getTopPoopers = this.getTopPoopers.bind(this);
     this.getIdFromToken = getIdFromToken;
   }
 
@@ -23,6 +25,18 @@ class UserController {
         };
         res.status(err.message).json(errorResponse[err.message]);
       })
+  }
+
+  getTopCleaners(req, res) {
+    this.userService.showTopCleaners()
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(err.message).json(`You made a ${err.message} error`));
+  }
+
+  getTopPoopers(req, res) {
+    this.userService.showTopPoopers()
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(err.message).json(`You made a ${err.message} error`));
   }
 }
 

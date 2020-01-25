@@ -48,4 +48,8 @@ router.put('/username', auth.authenticateToken, userController.updateUsername);
 
 router.get('/oldShits', auth.authenticateToken, shitController.getOldestShits);
 
+router.get('/topCleaners', auth.authenticateToken, userController.getTopCleaners);
+
+router.get('/topPoopers', auth.authenticateToken, userController.getTopPoopers);
+
 module.exports = router;
