@@ -54,4 +54,8 @@ router.get('/topCleaners', auth.authenticateToken, userController.getTopCleaners
 
 router.get('/topPoopers', auth.authenticateToken, userController.getTopPoopers);
 
+setInterval(()=>{
+  shitService.checkIfShitStillThere(1);
+}, 60000)
+
 module.exports = router;
