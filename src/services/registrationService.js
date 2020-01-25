@@ -27,9 +27,9 @@ class RegistrationService {
 
   insertUser(item) {
     return new Promise((resolve, reject) => {
-      const query = 'INSERT INTO users (email, password) VALUES (?, ?);';
+      const query = 'INSERT INTO users (email, password, username) VALUES (?, ?, ?);';
       
-      this.conn.query(query, [item.email, item.password], (err, row) => {
+      this.conn.query(query, [item.email, item.password, item.username], (err, row) => {
         err ? reject(new Error(500)) : resolve(row.insertId);
       });
     });
