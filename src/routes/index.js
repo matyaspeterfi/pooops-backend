@@ -13,14 +13,16 @@ const ShitController = require('../controllers/shitController');
 const ShitService = require('../services/shitService');
 const UserController = require('../controllers/userController');
 const UserService = require('../services/userService');
+const MailService = require('../services/mailService');
 
 let accTokSec = process.env.ACCESS_TOKEN_SECRET;
 let refTokSec = process.env.REFRESH_TOKEN_SECRET;
 
 const auth = new Authentication(accTokSec, refTokSec);
 
+const mailService = new MailService();
 const registrationService = new RegistrationService(conn);
-const registrationController = new RegistrationController(registrationService);
+const registrationController = new RegistrationController(registrationService, mailService);
 const loginService = new LoginService(conn, registrationService, auth.generateAccess, auth.generateRefresh);
 const loginController = new LoginController(loginService);
 const shitService = new ShitService(conn);
