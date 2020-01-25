@@ -12,8 +12,8 @@ class mailService {
       port: 465,
       secure: true,
       auth: {
-        user: 'pooopsapp@gmail.com',
-        pass: 'shitterton'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PW
       }
     });
 
